@@ -224,6 +224,16 @@ async def get_results(tender_id: str):
     ranked = sorted([b for b in bids if "score" in b], key=lambda x: x["score"], reverse=True)
     return {"tender_id": tender_id, "ranked_bids": ranked}
 
+@app.get("/api/tenders")
+async def get_tenders():
+    if USE_FIREBASE:
+        tenders_ref = db.collection("tenders").stream()
+        tenders = [t.to_dict() for t in tenders_ref]
+    else:
+        tenders = list(tenders_db.values())
+    
+    return {"tenders": tenders}
+
 @app.get("/")
 async def root():
     return {"message": "ClearBid API", "app_id": APP_ID}
