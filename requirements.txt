@@ -1,0 +1,8 @@
+fastapi==0.115.6
+uvicorn==0.34.0
+firebase-admin==6.6.0
+algokit-utils==4.2.3
+py-algorand-sdk==2.11.1
+google-generativeai==0.8.3
+python-dotenv==1.0.1
+pydantic==2.10.5
